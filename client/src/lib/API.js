@@ -46,7 +46,8 @@ export default {
 
   Cards: {
     deleteCardInColumn: function (authToken, boardId, colIndex, cardId) {
-      return axios.delete(`/${boardId}/columns/${colIndex}/cards/${cardId}`,{
+      return axios.delete(`/${boardId}/columns/${colIndex}/cards/${cardId}`,
+      {
         cardId
       },
       {
