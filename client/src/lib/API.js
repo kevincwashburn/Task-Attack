@@ -17,6 +17,7 @@ export default {
         },
       });
     },
+    
   },
 
   Boards: {
@@ -27,7 +28,13 @@ export default {
         },
       });
     },
-
+// axios post to create board
+    createBoard: function (title) {
+      return axios.post("/api/boards", 
+        {
+          title
+      });
+    },
     createCardInColumn: function (authToken, boardId, colIndex, title, body) {
       return axios.post(
         `/api/boards/${boardId}/columns/${colIndex}/cards`,

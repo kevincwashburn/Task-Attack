@@ -51,10 +51,11 @@ class Register extends Component {
 
   state = {
     redirectToReferrer: false,
-    error: ""
+    error: "",
+    boardCreated: false
   }
 
-  handleSubmit = (email, password) => {
+  handleSubmit = (email, password, authToken) => {
     API.Users.create(email, password)
       .then(response => {
         this.setState({ redirectToReferrer: true })
@@ -64,7 +65,16 @@ class Register extends Component {
           this.setState({ error: "Sorry, that email/password combination is not valid. Please try again." });
         }
       });
-  }
+    API.Boards.createBoard(authToken)
+    .then(response => {
+      this.setState({ boardCreated: true })
+      })
+      .catch(err => {
+        if (err.response.status === 401) {
+          this.setState({ error: "Board could not be created" });
+        }
+      });
+  };
 
   render() {
     const { classes } = this.props;
