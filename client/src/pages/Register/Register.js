@@ -124,7 +124,8 @@ render() {
                   </div>
                 }
                 <div>
-                  <RegistrationForm onSubmit={this.handleSubmit, this.handleBoard} />
+                  {/* this.handleBoard needs to be run with handle submit somehow */}
+                  <RegistrationForm onSubmit={this.handleSubmit} />
                 </div>
               </Paper>
             </Grid>
