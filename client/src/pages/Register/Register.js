@@ -16,8 +16,8 @@ const styles = theme => ({
     overflow: "visible",
     background: `url(${backgroundShape}) no-repeat`,
     backgroundSize: "cover",
-    backgroundPosition: "0 200px",
-    paddingBottom: 200
+    backgroundPosition: "0 250px",
+    paddingBottom: 560
   },
   grid: {
     width: 1200,
@@ -55,36 +55,8 @@ class Register extends Component {
     boardCreated: false
   }
 
-  // newBoard = (title, userId) => {
-  //   console.log(`title: ${title}`);
-  //   console.log(`user ID: ${userId}`);
-
-  //   API.Boards.createBoard(title, userId)
-  //     .then(response => {
-  //       this.setState({ boardCreated: true });
-  //       console.log("response: " + response);
-  //       console.log("this.state: " + this.state);
-
-  //     })
-  //     .catch(err => {
-  //       if (err.response.status === 401) {
-  //         this.setState({ error: "board not created." });
-  //       }
-  //     });
-  // }
-  
-  handleSubmit = (email, password, title, userId) => {
-    API.Users.create(email, password)
-      .then(response => {
-        this.setState({ redirectToReferrer: true });
-      })
-      .catch(err => {
-        if (err.response.status === 401) {
-          this.setState({ error: "Sorry, that email/password combination is not valid. Please try again." });
-        }
-      });
-
-    API.Boards.createBoard(title, userId)
+  handleBoard = (title, userId, columns) => {
+    API.Boards.createBoard(title, userId, columns)
       .then(response => {
         this.setState({ boardCreated: true });
         console.log("response: " + response);
@@ -93,6 +65,22 @@ class Register extends Component {
       .catch(err => {
         if (err.response.status === 401) {
           this.setState({ error: "board not created." });
+        }
+      });
+  };
+
+
+  handleSubmit = (email, password) => {
+    API.Users.create(email, password)
+      .then(response => {
+        this.setState({ redirectToReferrer: true });
+        console.log(response);
+        
+      })
+      // .then(() => this.handleBoard())
+      .catch(err => {
+        if (err.response.status === 401) {
+          this.setState({ error: "Sorry, that email/password combination is not valid. Please try again." });
         }
       });
 }
