@@ -55,24 +55,24 @@ class Register extends Component {
     boardCreated: false
   }
 
-  newBoard = (title, userId) => {
-    console.log(`title: ${title}`);
-    console.log(`user ID: ${userId}`);
+  // newBoard = (title, userId) => {
+  //   console.log(`title: ${title}`);
+  //   console.log(`user ID: ${userId}`);
 
-    API.Boards.createBoard(title, userId)
-      .then(response => {
-        this.setState({ boardCreated: true });
-        console.log("response: " + response);
-        console.log("this.state: " + this.state);
+  //   API.Boards.createBoard(title, userId)
+  //     .then(response => {
+  //       this.setState({ boardCreated: true });
+  //       console.log("response: " + response);
+  //       console.log("this.state: " + this.state);
 
-      })
-      .catch(err => {
-        if (err.response.status === 401) {
-          this.setState({ error: "board not created." });
-        }
-      });
-  }
-
+  //     })
+  //     .catch(err => {
+  //       if (err.response.status === 401) {
+  //         this.setState({ error: "board not created." });
+  //       }
+  //     });
+  // }
+  
   handleSubmit = (email, password, title, userId) => {
     API.Users.create(email, password)
       .then(response => {
