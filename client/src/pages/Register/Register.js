@@ -52,13 +52,13 @@ class Register extends Component {
   state = {
     redirectToReferrer: false,
     error: "",
-    boardCreated: false
+    boardCreated: undefined
   }
 
   handleBoard = (title, userId, columns) => {
     API.Boards.createBoard(title, userId, columns)
       .then(response => {
-        this.setState({ boardCreated: true });
+        this.setState({ boardCreated: response.data });
         console.log("response: " + response);
         console.log("this.state: " + this.state);
       })
@@ -77,7 +77,6 @@ class Register extends Component {
         console.log(response);
         
       })
-      // .then(() => this.handleBoard())
       .catch(err => {
         if (err.response.status === 401) {
           this.setState({ error: "Sorry, that email/password combination is not valid. Please try again." });
@@ -125,11 +124,11 @@ render() {
                   </div>
                 }
                 <div>
-                  <RegistrationForm onSubmit={this.handleSubmit} />
+                  <RegistrationForm onSubmit={this.handleSubmit, this.handleBoard} />
                 </div>
               </Paper>
             </Grid>
-          </Grid>
+          </Grid>Z
         </Grid>
       </Grid>
     </div>
