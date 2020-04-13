@@ -57,16 +57,20 @@ class HomePageColumn extends Component {
 
     return (
       <div>
+        
         <Grid container item>
-          <Grid item className={classes.colGrid} xs={12} md={4}>
-            <Draggable dragagableId={this.props.id} index={this.props.index}>
-              {(provided) => (
-                <Paper
-                  className={classes.paper}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                  inneRef={provided.innerRef}
-                >
+        <Draggable dragagableId={this.props.id} index={this.props.index}>
+            {(provided) => (
+              <Grid
+                item
+                className={classes.colGrid}
+                xs={12}
+                md={4}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+                innerRef={provided.innerRef}
+              >
+                <Paper className={classes.paper}>
                   <div>
                     <div>
                       <form noValidate autoComplete="off">
@@ -166,10 +170,11 @@ class HomePageColumn extends Component {
                     </div>
                   </Card>
                 </Paper>
-              )}
-            </Draggable>
-          </Grid>
+              </Grid>
+           )}
+           </Draggable>
         </Grid>
+         
       </div>
     );
   }
