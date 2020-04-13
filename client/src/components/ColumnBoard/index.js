@@ -89,12 +89,19 @@ class ColumnBoard extends Component {
       .catch((err) => console.log(err));
   };
 
+<<<<<<< HEAD
   handleDelete = () => {
     const { authToken } = this.context;
     const { boardId, colIndex, cardIndex } = this.props;
+=======
+  handleDelete = (cardIndex) => {
+    const { authToken } = this.context;
+    const { handleRefresh, boardId, colIndex} = this.props;
+>>>>>>> 03750622aef8c87975066f6c5d871543a910af7c
     console.log("Deleting a card");
     API.Cards.deleteCardInColumn(authToken, boardId, colIndex, cardIndex)
       .then((res) => console.log(res))
+      .then(() => handleRefresh())
       .catch((err) => console.log(err));
   };
 
@@ -139,7 +146,7 @@ class ColumnBoard extends Component {
                       // variant="outlined"
                       style={{ textTransform: "uppercase" }}
                       color="secondary"
-                      defaultValue={title}
+                      // defaultValue={title}
                       value={title}
                       // onChange = {this.editColumnTitle}
                     />
@@ -171,6 +178,7 @@ class ColumnBoard extends Component {
 
               {cards.map((card,index) => (
                 <CardBoard
+                  key={card._id}
                   {...card}
                   //colId={column._id}
                   //cardId={card._id}
