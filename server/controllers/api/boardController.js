@@ -50,11 +50,11 @@ boardController.post("/", JWTVerifier, (req, res) => {
           title: "Done",
           cards: [],
         },
-      ],
+      ]
     }
-  )
+    )
     .then((dbBoard) => res.json(dbBoard))
-    .catch((err) => res.json(err));
+    .catch((err) => res.json(err))
 });
 
 // READ USER'S BOARD

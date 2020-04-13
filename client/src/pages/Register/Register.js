@@ -55,19 +55,19 @@ class Register extends Component {
     boardCreated: undefined
   }
 
-  handleBoard = (title, userId, columns) => {
-    API.Boards.createBoard(title, userId, columns)
-      .then(response => {
-        this.setState({ boardCreated: response.data });
-        console.log("response: " + response);
-        console.log("this.state: " + this.state);
-      })
-      .catch(err => {
-        if (err.response.status === 401) {
-          this.setState({ error: "board not created." });
-        }
-      });
-  };
+  // handleBoard = (title, userId, columns) => {
+  //   API.Boards.createBoard(title, userId, columns)
+  //     .then(response => {
+  //       this.setState({ boardCreated: response.data });
+  //       console.log("response: " + response);
+  //       console.log("this.state: " + this.state);
+  //     })
+  //     .catch(err => {
+  //       if (err.response.status === 401) {
+  //         this.setState({ error: "board not created." });
+  //       }
+  //     });
+  // };
 
 
   handleSubmit = (email, password) => {
@@ -124,7 +124,6 @@ render() {
                   </div>
                 }
                 <div>
-                  {/* this.handleBoard needs to be run with handle submit somehow */}
                   <RegistrationForm onSubmit={this.handleSubmit} />
                 </div>
               </Paper>
