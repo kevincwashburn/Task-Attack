@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import withStyles from "@material-ui/styles/withStyles";
 import {
   Button,
@@ -15,7 +15,7 @@ const styles = (theme) => ({
     nimWidth: 275,
     nimHeight: 300,
   },
-  actionButtom: {
+  actionButton: {
     textTransform: "uppercase",
     margin: theme.spacing(1),
     width: 100,
@@ -37,11 +37,25 @@ const styles = (theme) => ({
 });
 
 const CardBoard = (props) => {
-  const { classes, title, body, handleSave, handleDelete } = props;
+  const [title, setTitle] = useState(props.title);
+  const [body, setBody] = useState(props.body);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "title") {
+      setTitle(value);
+    } else if (name === "body") {
+      setBody(value);
+    } else {
+      alert("Ruh roh, something bad happened.");
+    }
+  }
+  
+  const { classes, cardIndex, handleEdit, handleDelete } = props;
 
   return (
     <div>
-      <Card variant="outlined">
+       <Card variant="outlined">
         <div>
           <CardHeaderMenu />
 
@@ -56,6 +70,8 @@ const CardBoard = (props) => {
                 className={classes.cardTitle}
                 variant="filled"
                 value={title}
+                name="title"
+                onChange={handleInputChange}
               />
             </form>
 
@@ -66,7 +82,9 @@ const CardBoard = (props) => {
                 multiline
                 rows="4"
                 defaultValue="Default Value"
+                name="body"
                 value={body}
+                onChange={handleInputChange}
               />
             </form>
           </CardContent>
@@ -78,9 +96,9 @@ const CardBoard = (props) => {
               variant="contained"
               color="secondary"
               size="small"
-              className={classes.actionButtom}
+              className={classes.actionButton}
               //value={value}
-              onClick={() => handleSave(props)}
+              onClick={() => props.handleSave(cardIndex, title, body)}
             >
               Save
             </Button>
@@ -89,6 +107,7 @@ const CardBoard = (props) => {
               variant="contained"
               size="small"
               className={classes.actionButton}
+              onClick={() => handleEdit(props)}
             >
               Edit
             </Button>
@@ -104,7 +123,8 @@ const CardBoard = (props) => {
             </Button>
           </CardActions>
         </div>
-      </Card>
+      </Card> 
+      
     </div>
   );
 };

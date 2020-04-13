@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/styles/withStyles";
-import { Grid, Paper, Typography, Button, TextField } from "@material-ui/core";
+import {
+  Grid,
+  Paper,
+  Typography,
+  Button,
+  TextField,
+  Input,
+} from "@material-ui/core";
 import CardBoard from "../../components/CardBoard";
 import AuthContext from "../../contexts/AuthContext";
 import API from "../../lib/API";
@@ -35,121 +42,149 @@ const styles = (theme) => ({
 class ColumnBoard extends Component {
   static contextType = AuthContext;
 
- // editColumnTitle is icebox.. and also currently broken
-  editColumnTitle = (title) => {
-    // const { title } = this.props;
-    API.Columns.updateColumnTitle(
-      title,
-    )
-    .then((res) => {console.log(res)})
-    .catch((err) => console.log(err));
-  }
+  state = {
+    card: undefined,
+    column: undefined,
+    isCardLoading: true,
+  };
 
-  handleAdd = () => {
-    const { handleRefresh, boardId } = this.props;
+  // componentDidMount() {
+  //   this.refreshColumn();
+  // }
+  // refreshColumn = () => {
+  //   const { authToken } = this.context;
+
+  //   API.Cards.createCardInColumn(authToken)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       this.setState({ card: res.data, isCardLoading: false });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  handleAddCard = () => {
+    const { handleRefresh, boardId, colIndex} = this.props;
     const { authToken } = this.context;
+    console.log("Adding a card");
 
     API.Cards.createCardInColumn(
-      authToken,
-      boardId,
-      1,
-      "My Name",
-      "Lorem ipsum..."
-    )
+      authToken, 
+      boardId, 
+      colIndex, 
+      "Edit me", 
+      "Edit me")
       .then(() => handleRefresh())
       .catch((err) => console.log(err));
   };
 
-  handleSave = (card) => {
+  handleSave = (cardIndex, title, body) => {
     const { authToken } = this.context;
-    API.Cards.createCardInColumn(
-      authToken,
-      this.props.id,
-      this.props.index,
-      card.title,
-      card.id,
-      card.body
-    )
+    const { boardId, colIndex } = this.props;
+    console.log("Saving a card");
+    API.Cards.updateCard(authToken, boardId, 
+      colIndex,cardIndex, title, body)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => console.log(err));
   };
 
-  handleDelete = (card) => {
+  handleDelete = (event) => {
+    event.preventDefault();
     const { authToken } = this.context;
-    API.Cards.deleteCardInColumn(
-      authToken,
-      this.props.id,
-      this.props.index,
-      card.id
-    )
+    const { boardId, colId, cardId } = this.props;
+    console.log("Deleting a card");
+    API.Cards.deleteCardInColumn(authToken, boardId, colId, cardId)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  handleEdit = (event) => {
+    event.preventDefault();
+    const { authToken } = this.context;
+    const { boardId, colId, cardId, title, body } = this.props;
+
+    console.log("Editing...");
+
+    API.Cards.updateCard(authToken, boardId, colId, cardId, title, body)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
 
   render() {
     const { classes, title, cards } = this.props;
+    const { card, column } = this.state;
 
     return (
       <div>
+        {/* {isCardLoading ? (
+          <div> Loading a card...</div>
+        ) : card ? ( */}
         <Grid container item>
           <Grid item className={classes.grid} xs={12}>
             <Paper className={classes.paper}>
               <div>
                 <div>
-                  <Typography
+                  {/* <Typography
                     style={{ textTransform: "uppercase" }}
                     color="secondary"
                     gutterBottom="true"
                   >
-                    {/* {this.props.title} */}
-                  </Typography>
+                     {this.props.title}  
+                  </Typography> */}
                   {/* to input column text */}
                   <form noValidate autoComplete="off">
                     <TextField
-                       id="standard-basic"
-                       // label="Column Title"
-                       // variant="outlined"
-                       color="secondary"
-                       defaultValue = {title}
+                      id="standard-basic"
+                      // label="Column Title"
+                      // variant="outlined"
+                      style={{ textTransform: "uppercase" }}
+                      color="secondary"
+                      defaultValue={title}
+                      value={title}
                       // onChange = {this.editColumnTitle}
                     />
+                    
                   </form>
                 </div>
                 <div className={classes.alignRight}>
                   {/* Should add a CardBoard onClick*/}
-                  <Button
+                  {/* <Button
                     size="small"
                     color="secondary"
                     variant="contained"
                     className={classes.actionButtom}
-                    //onClick={this.handleEdit}
+                    //onClick={this.handleColEdit}
                   >
                     Edit
-                  </Button>
+                  </Button> */}
                   <Button
                     color="primary"
                     variant="contained"
                     size="small"
                     className={classes.actionButtom}
-                    onClick={this.handleAdd}
+                    onClick={this.handleAddCard}
                   >
                     Add a Task
                   </Button>
                 </div>
               </div>
 
-              {cards.map((card) => (
+              {cards.map((card,index) => (
                 <CardBoard
                   {...card}
+                  //colId={column._id}
+                  //cardId={card._id}
+                  cardIndex={index}
                   handleSave={this.handleSave}
+                  handleEdit={this.handleEdit}
                   handleDelete={this.handleDelete}
                 />
               ))}
             </Paper>
           </Grid>
         </Grid>
+        {/* ) : null} */}
       </div>
     );
   }

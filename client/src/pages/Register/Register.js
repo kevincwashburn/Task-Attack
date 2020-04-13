@@ -56,9 +56,10 @@ class Register extends Component {
   }
 
   // handleBoard = (title, userId, columns) => {
-  //   API.Boards.createBoard(title, userId, columns)
+  //   const { authToken } = this.context;
+  //   API.Boards.createBoard(title, userId, columns, authToken)
   //     .then(response => {
-  //       this.setState({ boardCreated: response.data });
+  //       this.setState({ boardCreated: true });
   //       console.log("response: " + response);
   //       console.log("this.state: " + this.state);
   //     })
