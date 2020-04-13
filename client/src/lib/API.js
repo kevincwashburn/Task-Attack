@@ -30,7 +30,7 @@ export default {
       });
     },
 
-    createBoard: function (title, userId, columns) {
+    createBoard: function (title, userId, columns, authToken) {
       return axios.post("/api/boards",
         {
           title,

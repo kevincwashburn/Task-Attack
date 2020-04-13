@@ -89,12 +89,11 @@ class ColumnBoard extends Component {
       .catch((err) => console.log(err));
   };
 
-  handleDelete = (event) => {
-    event.preventDefault();
+  handleDelete = () => {
     const { authToken } = this.context;
-    const { boardId, colId, cardId } = this.props;
+    const { boardId, colIndex, cardIndex } = this.props;
     console.log("Deleting a card");
-    API.Cards.deleteCardInColumn(authToken, boardId, colId, cardId)
+    API.Cards.deleteCardInColumn(authToken, boardId, colIndex, cardIndex)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -109,7 +108,7 @@ class ColumnBoard extends Component {
     API.Cards.updateCard(authToken, boardId, colId, cardId, title, body)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-  };
+};
 
   render() {
     const { classes, title, cards } = this.props;
@@ -189,5 +188,4 @@ class ColumnBoard extends Component {
     );
   }
 }
-
 export default withStyles(styles)(ColumnBoard);
