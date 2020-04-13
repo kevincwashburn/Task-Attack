@@ -27,34 +27,6 @@ const template = {
 
 // CREATE BOARD
 boardController.post("/", JWTVerifier, (req, res) => {
-<<<<<<< HEAD
-  db.Board.create(
-    {
-      // ...template,
-      title: "title",
-      userId: req.user._id,
-      columns: [
-        {
-          title: "To Do",
-          cards: [
-            {
-              title: "new task",
-              body: "kanban",
-            },
-          ],
-        },
-        {
-          title: "In Progress",
-          cards: [],
-        },
-        {
-          title: "Done",
-          cards: [],
-        },
-      ]
-    }
-    )
-=======
   db.Board.create({
     // ...template,
     title: "title",
@@ -79,7 +51,6 @@ boardController.post("/", JWTVerifier, (req, res) => {
       },
     ],
   })
->>>>>>> 03750622aef8c87975066f6c5d871543a910af7c
     .then((dbBoard) => res.json(dbBoard))
     .catch((err) => res.json(err))
 });
