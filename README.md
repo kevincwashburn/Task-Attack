@@ -1,6 +1,6 @@
 
   # Task Attack
-  ![alt text](image.jpg)
+  ![alt text](client/public/assets/images/screenshots/proj3ss.png)
   [Heroku](https://task-attack.herokuapp.com/)
 
   ![user badge](https://img.shields.io/badge/license-MIT-red)
@@ -52,13 +52,13 @@ yarn start:dev
 If you have any questions, please contact adriana-didden directly at adriana.j.didden@gmail.com. 
 ---
 <img src="https://avatars3.githubusercontent.com/u/58992132?v=4" width='100px' />
-If you have any questions, please contact Dorinetk directly at INSERT_EMAIL@gmail.com. 
+If you have any questions, please contact Dorinetk directly at dketchiozo@gmail.com. 
 ---
 <img src="https://avatars0.githubusercontent.com/u/59990106?v=4" width='100px' />
-If you have any questions, please contact wwshehan directly at INSERT_EMAIL@gmail.com. 
+If you have any questions, please contact wwshehan directly at wwshehan@gmail.com. 
 ---
 <img src="https://avatars0.githubusercontent.com/u/57323164?v=4" width='100px' />
-If you have any questions, please contact kevincwashburn directly at INSERT_EMAIL@gmail.com. 
+If you have any questions, please contact kevincwashburn directly at kevincwashburn@gmail.com. 
 ---
 
 
