@@ -77,15 +77,12 @@ class DashBoard extends Component {
                   key={column._id}
                   boardId={board._id}
                   colIndex={index}
+                  colTitle={column.title}
                   {...column}
                   handleRefresh={this.refreshBoard}
                 />
               ))}
-              {/* <ColumnBoard title="To Do" />
-              <ColumnBoard title = "In Progress"  />
-              <ColumnBoard title="Done" />
-              <ColumnBoard title="Ice Box" />
-             */}
+  
             </Grid>
           </Grid>
         ) : null}

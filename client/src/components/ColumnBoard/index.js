@@ -34,12 +34,15 @@ const styles = (theme) => ({
 
 class ColumnBoard extends Component {
   static contextType = AuthContext;
-
-  state = {
-    card: undefined,
-    column: undefined,
-    isCardLoading: true,
-  };
+  constructor(props){
+    super();
+    this.state = {
+      card: undefined,
+      column: undefined,
+      isCardLoading: true,
+    }
+  }
+  
 
   handleAddCard = () => {
     const { handleRefresh, boardId, colIndex } = this.props;
@@ -108,7 +111,7 @@ class ColumnBoard extends Component {
 };
 
   render() {
-    const { classes, title, cards } = this.props;
+    const { classes, title, cards, colTitle } = this.props;
     const { card, column } = this.state;
 
     return (
@@ -151,6 +154,7 @@ class ColumnBoard extends Component {
                   //colId={column._id}
                   //cardId={card._id}
                   cardIndex={index}
+                  colTitle = {colTitle}
                   handleSave={this.handleSave}
                   handleEdit={this.handleEdit}
                   handleDelete={this.handleDelete}

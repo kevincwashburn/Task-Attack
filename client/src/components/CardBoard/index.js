@@ -7,6 +7,7 @@ import {
   CardActions,
   TextField,
   IconButton,
+  CardHeader,
 } from "@material-ui/core";
 import ArrowLeftIcon from "@material-ui/icons/ArrowLeft";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
@@ -59,13 +60,20 @@ const CardBoard = (props) => {
     }
   };
 
-  const { classes, cardIndex, handleDelete } = props;
+  const { classes, cardIndex, handleDelete, colTitle } = props;
 
   return (
     <div>
-      <Card variant="outlined" className={classes.root}>
+      <Card variant="outlined" className={classes.root} colTitle={colTitle}>
         <div>
-          <CardHeaderMenu />
+          <CardHeader
+          action= {
+          <CardHeaderMenu  colTitle = {colTitle}
+           />}
+          />
+      
+          
+          
 
           <CardContent>
             <form noValidate autoComplete="off" className={classes.formStyle}>
