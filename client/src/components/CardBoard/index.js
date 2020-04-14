@@ -136,6 +136,8 @@ const CardBoard = (props) => {
               variant="outlined"
               size="small"
               className={classes.sideButton}
+              onClick={() => props.moveCardLeft(props.cardIndex)}
+              
             >
               <ArrowLeftIcon />
             </IconButton>
@@ -145,6 +147,9 @@ const CardBoard = (props) => {
               variant="outlined"
               size="small"
               className={classes.sideButton}
+              onClick={() => props.moveCardRight(props.cardIndex)}
+              
+              
             >
               <ArrowRightIcon />
             </IconButton>
