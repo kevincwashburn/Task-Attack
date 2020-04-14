@@ -51,8 +51,6 @@ class ColumnBoard extends Component {
       boardId,
       colIndex,
       //change this hard coded text
-      "Edit me",
-      "Edit me"
     )
       .then(() => handleRefresh())
       .catch((err) => console.log(err));
