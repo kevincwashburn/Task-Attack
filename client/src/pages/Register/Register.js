@@ -129,7 +129,7 @@ render() {
                 </div>
               </Paper>
             </Grid>
-          </Grid>Z
+          </Grid>
         </Grid>
       </Grid>
     </div>
