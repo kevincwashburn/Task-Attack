@@ -4,13 +4,11 @@ const Schema = mongoose.Schema;
 var CardSchema = new Schema({
   title: {
     type: String,
-    minlength: 1,
     maxlength: 15,
   },
   body: {
     type: String,
-    minlength: 1,
-    maxlength: 140,
+    maxlength: 280,
   },
   // priority: {
   //   enum: ["low", "medium", "high"],
@@ -20,7 +18,6 @@ var CardSchema = new Schema({
 var ColumnSchema = new Schema({
   title: {
     type: String,
-    minlength: 1,
     maxlength: 15,
   },
   cards: [CardSchema],

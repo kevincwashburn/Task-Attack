@@ -52,7 +52,7 @@ boardController.post("/", JWTVerifier, (req, res) => {
     ],
   })
     .then((dbBoard) => res.json(dbBoard))
-    .catch((err) => res.json(err));
+    .catch((err) => res.json(err))
 });
 
 // READ USER'S BOARD
@@ -63,7 +63,7 @@ boardController.get("/", JWTVerifier, (req, res) => {
     })
     .catch((err) => res.json(err));
 });
-// req.user.id will be used to get user id
+
 
 // UPDATE BOARD
 boardController.put("/:id", JWTVerifier, ({ params, body }, res) => {

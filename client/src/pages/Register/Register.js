@@ -52,7 +52,7 @@ class Register extends Component {
   state = {
     redirectToReferrer: false,
     error: "",
-    boardCreated: false
+    boardCreated: undefined
   }
 
   // handleBoard = (title, userId, columns) => {
@@ -78,7 +78,6 @@ class Register extends Component {
         console.log(response);
         
       })
-      // .then(() => this.handleBoard())
       .catch(err => {
         if (err.response.status === 401) {
           this.setState({ error: "Sorry, that email/password combination is not valid. Please try again." });
@@ -89,7 +88,7 @@ class Register extends Component {
 render() {
   const { classes } = this.props;
 
-  const { from } = this.props.location.state || { from: { pathname: "/secret" } };
+  const { from } = this.props.location.state || { from: { pathname: "/Login" } };
   const { redirectToReferrer } = this.state;
 
   if (redirectToReferrer) {
@@ -130,7 +129,7 @@ render() {
                 </div>
               </Paper>
             </Grid>
-          </Grid>
+          </Grid>Z
         </Grid>
       </Grid>
     </div>

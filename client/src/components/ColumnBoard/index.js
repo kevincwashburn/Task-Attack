@@ -54,8 +54,6 @@ class ColumnBoard extends Component {
       boardId,
       colIndex,
       //change this hard coded text
-      "Edit me",
-      "Edit me"
     )
       .then(() => handleRefresh())
       .catch((err) => console.log(err));
@@ -110,7 +108,7 @@ class ColumnBoard extends Component {
     API.Cards.updateCard(authToken, boardId, colId, cardId, title, body)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-  };
+};
 
   render() {
     const { classes, title, cards, colTitle } = this.props;
@@ -172,5 +170,4 @@ class ColumnBoard extends Component {
     );
   }
 }
-
 export default withStyles(styles)(ColumnBoard);
