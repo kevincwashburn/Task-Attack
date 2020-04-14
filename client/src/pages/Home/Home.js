@@ -59,7 +59,6 @@ const styles = (theme) => ({
     marginBottom: 40,
     height: 120,
     textAlign: "center",
-
   },
 });
 
@@ -95,24 +94,24 @@ class HomePage extends Component {
                     >
                       Welcome to Task Attack
                     </Typography>
-                    <Typography  variant="h6" gutterBottom>
-                      This app was created for busy people like you!
-                      Register and create an account.
-                      You will see a dashboard that looks like the one below. Click on "Add a task"
-                      to add a task, then edit the title and description to save edit.
-                      Send us your feedback at taskattack@gmail.com. 
-
+                    <Typography variant="h6" gutterBottom>
+                      This app was created for busy people like you! Register
+                      and create an account. You will see a dashboard that looks
+                      like the one below. Click on "Add a task" to add a task,
+                      then edit the title and description to save edit. Send us
+                      your feedback at taskattack@gmail.com.
                     </Typography>
                   </div>
                 </Paper>
               </Grid>
             </Grid>
-
-            <Grid item xs={12} className={classes.colGrid}>
-              <DragDropContext onDragEnd={this.onDragEnd}>
-                {this.state.defaultData.map((data, index) => (
-                  <Droppable droppableId={data.id}>
-                    {(provided) => (
+            <DragDropContext onDragEnd={this.onDragEnd}>
+              
+                
+                    <Grid item xs={12} className={classes.colGrid}>
+                    {this.state.defaultData.map((data, index) => (
+                      <Droppable droppableId={data.id}>
+                  {(provided) => (
                       <HomePageColumn
                         innerRef={provided.inneRef}
                         {...provided.droppableProps}
@@ -121,11 +120,13 @@ class HomePage extends Component {
                         key={data.id}
                         index={index}
                       />
-                    )}
-                  </Droppable>
-                ))}
-              </DragDropContext>
-            </Grid>
+                      )}
+                      </Droppable>
+                       ))}
+                    </Grid>
+                 
+             
+            </DragDropContext>
           </Grid>
         </Grid>
       </div>

@@ -23,6 +23,8 @@ const CardHeaderMenu = (props) => {
   const handleClose = () => {
     setAnchorMenu(null);
   };
+  
+ 
 
   return (
     <div>
@@ -46,14 +48,16 @@ const CardHeaderMenu = (props) => {
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
-            width: "20ch",
+            width: "15ch",
           },
         }}
       >
         {cardMenu.map((menuoption) => (
           <MenuItem
             key={menuoption}
-            selected={menuoption === "Pyxis"}
+            //selected={menuoption === "In Progress"}
+            selected={menuoption === props.colTitle}
+
             onClick={handleClose}
           >
             {menuoption}
