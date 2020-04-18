@@ -32,7 +32,8 @@ yarn
 
 ## Usage 
 As a user, I have a lot of different tasks to do, and I want to keep them organized on a kanban-like interface. 
-When I am logged in i am taken to my page of boards in order to select which project i’d like to continue working on. 
+When I am logged in i am taken to the dashboard page where i can add/edit cards to keep track of tasks i need to complete or have already completed.
+
 
 ## License 
 
